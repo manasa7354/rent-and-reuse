@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Rent & Reuse</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f5f8f6;
+    color: #203b35;
+}
+
+header {
+    background: white;
+    padding: 20px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+nav a {
+    text-decoration: none;
+    color: #203b35;
+    margin-left: 25px;
+    font-weight: 500;
+}
+
+.login {
+    background: #285c52;
+    color: white !important;
+    padding: 10px 18px;
+    border-radius: 25px;
+}
+
+.hero {
+    padding: 80px 7%;
+    text-align: center;
+    background: #e8f1ed;
+}
+
+.hero small {
+    letter-spacing: 3px;
+    color: #4d756c;
+    font-weight: bold;
+}
+
+.hero h1 {
+    font-size: 52px;
+    max-width: 800px;
+    margin: 20px auto;
+    line-height: 1.1;
+}
+
+.hero p {
+    max-width: 650px;
+    margin: auto;
+    font-size: 18px;
+    color: #61736e;
+    line-height: 1.6;
+}
+
+.search-box {
+    margin: 35px auto;
+    max-width: 650px;
+    display: flex;
+    background: white;
+    padding: 8px;
+    border-radius: 40px;
+    box-shadow: 0 5px 20px #0001;
+}
+
+.search-box input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 15px 20px;
+    font-size: 16px;
+}
+
+.search-box button {
+    border: none;
+    background: #34796d;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+.buttons button {
+    padding: 12px 25px;
+    margin: 5px;
+    border-radius: 25px;
+    border: 1px solid #34796d;
+    background: white;
+    color: #34796d;
+    cursor: pointer;
+}
+
+.section {
+    padding: 60px 7%;
+}
+
+.section h2 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 35px;
+}
+
+.items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px #0001;
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card h3 {
+    margin-bottom: 8px;
+}
+
+.card p {
+    color: #697873;
+    margin-bottom: 10px;
+}
+
+.price {
+    font-weight: bold;
+    color: #34796d;
+}
+
+.card button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    background: #34796d;
+    color: white;
+    cursor: pointer;
+}
+
+.about {
+    background: #dfece7;
+    text-align: center;
+}
+
+.about p {
+    max-width: 700px;
+    margin: auto;
+    line-height: 1.7;
+    color: #526660;
+}
+
+footer {
+    background: #203b35;
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+@media(max-width: 700px) {
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    nav {
+        display: none;
+    }
+
+    .search-box {
+        flex-direction: column;
+        border-radius: 15px;
+    }
+
+    .search-box button {
+        border-radius: 10px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Rent & Reuse</div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#items">Browse</a>
+        <a href="#about">About</a>
+        <a href="#login" class="login">Login / Sign Up</a>
+    </nav>
+</header>
+
+<section class="hero" id="home">
+
+    <small>RENT LESS. REUSE MORE. SAVE MORE.</small>
+
+    <h1>
+        Rent what you need.<br>
+        Reuse what you have.
+    </h1>
+
+    <p>
+        Find cameras, tools, books, electronics and more from people
+        nearby. Use them when you need them without buying new.
+    </p>
+
+    <div class="search-box">
+        <input type="text" id="searchInput"
+               placeholder="What are you looking for?">
+        <button onclick="searchItems()">Search</button>
+    </div>
+
+    <div class="buttons">
+        <button onclick="alert('Browse items coming soon!')">
+            Find an Item
+        </button>
+
+        <button onclick="alert('Listing feature coming soon!')">
+            List an Item
+        </button>
+    </div>
+
+</section>
+
+<section class="section" id="items">
+
+    <h2>Featured Items</h2>
+
+    <div class="items">
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?auto=format&fit=crop&w=600&q=80">
+
+            <div class="card-content">
+                <h3>Digital Camera</h3>
+                <p>Electronics • Nearby</p>
+                <div class="price">₹300/day</div>
+
+                <button onclick="viewDetails('Digital Camera')">
+                    View Details
+                </button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=600&q=80">
+
+            <div class="card-content">
+                <h3>Books Bundle</h3>
+                <p>Books • Nearby</p>
+                <div class="price">₹50/day</div>
+
+                <button onclick="viewDetails('Books Bundle')">
+                    View Details
+                </button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=600&q=80">
+
+            <div class="card-content">
+                <h3>Tool Kit</h3>
+                <p>Tools • Nearby</p>
+                <div class="price">₹100/day</div>
+
+                <button onclick="viewDetails('Tool Kit')">
+                    View Details
+                </button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1504512485720-7d83a16ee930?auto=format&fit=crop&w=600&q=80">
+
+            <div class="card-content">
+                <h3>Camping Tent</h3>
+                <p>Outdoor • Nearby</p>
+                <div class="price">₹250/day</div>
+
+                <button onclick="viewDetails('Camping Tent')">
+                    View Details
+                </button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="section about" id="about">
+
+    <h2>About Rent & Reuse</h2>
+
+    <p>
+        Rent & Reuse is a community platform that helps people rent
+        useful items from others instead of buying things they only
+        need temporarily. Save money, reduce waste and make better
+        use of things that are already available.
+    </p>
+
+</section>
+
+<footer>
+    <p>© 2026 Rent & Reuse</p>
+    <p>Rent. Reuse. Save.</p>
+</footer>
+
+<script>
+
+function searchItems() {
+
+    let search = document.getElementById("searchInput").value;
+
+    if (search.trim() === "") {
+        alert("Please enter an item to search.");
+    } else {
+        alert("Searching for: " + search);
+    }
+
+}
+
+function viewDetails(item) {
+
+    alert(
+        item +
+        "\\n\\nDetails:\\n" +
+        "Available for rent.\\n" +
+        "Contact the owner to request this item."
+    );
+
+}
+
+</script>
+
+</body>
+</html>
