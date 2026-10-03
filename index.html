@@ -15,199 +15,374 @@
 }
 
 body {
-    background: #f5f8f6;
-    color: #203b35;
+    background: #f5f7f6;
+    color: #222;
 }
 
-header {
+/* NAVBAR */
+nav {
     background: white;
-    padding: 20px 7%;
+    height: 70px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #ddd;
+    justify-content: space-between;
+    padding: 0 7%;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .logo {
     font-size: 25px;
     font-weight: bold;
+    color: #176b4d;
 }
 
-nav a {
+.logo span {
+    color: #f39c12;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
     text-decoration: none;
-    color: #203b35;
-    margin-left: 25px;
+    color: #333;
+    cursor: pointer;
     font-weight: 500;
 }
 
-.login {
-    background: #285c52;
-    color: white !important;
-    padding: 10px 18px;
-    border-radius: 25px;
+.nav-links a:hover {
+    color: #176b4d;
 }
 
+/* PAGES */
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+/* HOME */
 .hero {
-    padding: 80px 7%;
-    text-align: center;
-    background: #e8f1ed;
+    min-height: 500px;
+    background: linear-gradient(120deg, #176b4d, #2d9971);
+    color: white;
+    padding: 100px 7%;
+    display: flex;
+    align-items: center;
 }
 
-.hero small {
-    letter-spacing: 3px;
-    color: #4d756c;
-    font-weight: bold;
+.hero-content {
+    max-width: 650px;
 }
 
 .hero h1 {
-    font-size: 52px;
-    max-width: 800px;
-    margin: 20px auto;
-    line-height: 1.1;
+    font-size: 55px;
+    margin-bottom: 20px;
 }
 
 .hero p {
-    max-width: 650px;
-    margin: auto;
-    font-size: 18px;
-    color: #61736e;
+    font-size: 20px;
     line-height: 1.6;
+    margin-bottom: 30px;
 }
 
 .search-box {
-    margin: 35px auto;
-    max-width: 650px;
-    display: flex;
     background: white;
-    padding: 8px;
-    border-radius: 40px;
-    box-shadow: 0 5px 20px #0001;
+    padding: 10px;
+    border-radius: 12px;
+    display: flex;
+    max-width: 600px;
 }
 
 .search-box input {
     flex: 1;
     border: none;
     outline: none;
-    padding: 15px 20px;
+    padding: 15px;
     font-size: 16px;
 }
 
-.search-box button {
+.btn {
     border: none;
-    background: #34796d;
+    padding: 13px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.primary {
+    background: #176b4d;
     color: white;
-    padding: 15px 30px;
-    border-radius: 30px;
-    cursor: pointer;
 }
 
-.buttons {
-    margin-top: 20px;
+.primary:hover {
+    background: #0f5139;
 }
 
-.buttons button {
-    padding: 12px 25px;
-    margin: 5px;
-    border-radius: 25px;
-    border: 1px solid #34796d;
-    background: white;
-    color: #34796d;
-    cursor: pointer;
+.orange {
+    background: #f39c12;
+    color: white;
 }
 
 .section {
     padding: 60px 7%;
 }
 
-.section h2 {
+.section-title {
     text-align: center;
-    font-size: 32px;
     margin-bottom: 35px;
 }
 
+.section-title h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+/* CATEGORIES */
+.categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 20px;
+}
+
+.category {
+    background: white;
+    padding: 25px;
+    text-align: center;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+}
+
+.category:hover {
+    transform: translateY(-4px);
+}
+
+.category-icon {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+/* ITEMS */
 .items {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 25px;
 }
 
 .card {
     background: white;
-    border-radius: 15px;
+    border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 4px 15px #0001;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.08);
 }
 
-.card img {
-    width: 100%;
+.card-img {
     height: 180px;
-    object-fit: cover;
+    background: #e9efec;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 65px;
 }
 
-.card-content {
-    padding: 20px;
+.card-body {
+    padding: 18px;
 }
 
-.card h3 {
+.card-body h3 {
     margin-bottom: 8px;
 }
 
-.card p {
-    color: #697873;
-    margin-bottom: 10px;
+.card-body p {
+    color: #666;
+    margin: 6px 0;
 }
 
 .price {
+    color: #176b4d !important;
+    font-size: 18px;
     font-weight: bold;
-    color: #34796d;
 }
 
-.card button {
+.card-buttons {
+    display: flex;
+    gap: 8px;
     margin-top: 15px;
+}
+
+.card-buttons button {
+    flex: 1;
+}
+
+/* BROWSE */
+.browse-header {
+    padding: 50px 7% 20px;
+}
+
+.filter-box {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 20px 7%;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.filter-box input,
+.filter-box select {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+}
+
+/* FORM */
+.form-container {
+    max-width: 700px;
+    margin: 50px auto;
+    background: white;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+}
+
+.form-container h2 {
+    margin-bottom: 25px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
     width: 100%;
-    padding: 10px;
-    border: none;
+    padding: 13px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+}
+
+.form-group textarea {
+    height: 100px;
+}
+
+/* REQUESTS */
+.request {
+    background: white;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status {
+    padding: 7px 12px;
     border-radius: 20px;
-    background: #34796d;
-    color: white;
+    background: #fff3cd;
+    color: #856404;
+}
+
+/* PROFILE */
+.profile {
+    max-width: 700px;
+    margin: 50px auto;
+    background: white;
+    padding: 35px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.profile-icon {
+    font-size: 70px;
+    margin-bottom: 15px;
+}
+
+.rating {
+    color: #f39c12;
+    font-size: 22px;
+    margin: 10px;
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.close {
+    float: right;
+    font-size: 25px;
     cursor: pointer;
 }
 
-.about {
-    background: #dfece7;
-    text-align: center;
-}
-
-.about p {
-    max-width: 700px;
-    margin: auto;
-    line-height: 1.7;
-    color: #526660;
-}
-
+/* FOOTER */
 footer {
-    background: #203b35;
+    background: #123d2e;
     color: white;
-    padding: 30px;
+    padding: 35px 7%;
     text-align: center;
+    margin-top: 50px;
 }
 
-@media(max-width: 700px) {
-    .hero h1 {
-        font-size: 38px;
-    }
+@media(max-width:700px) {
 
     nav {
-        display: none;
+        padding: 0 4%;
     }
 
-    .search-box {
-        flex-direction: column;
-        border-radius: 15px;
+    .nav-links {
+        gap: 10px;
+        font-size: 13px;
     }
 
-    .search-box button {
-        border-radius: 10px;
+    .hero {
+        padding: 70px 5%;
+    }
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .section {
+        padding: 40px 5%;
     }
 }
 </style>
@@ -215,156 +390,870 @@ footer {
 
 <body>
 
-<header>
-    <div class="logo">Rent & Reuse</div>
+<!-- NAVIGATION -->
+<nav>
 
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#items">Browse</a>
-        <a href="#about">About</a>
-        <a href="#login" class="login">Login / Sign Up</a>
-    </nav>
-</header>
+    <div class="logo">
+        Rent <span>&</span> Reuse
+    </div>
 
-<section class="hero" id="home">
+    <div class="nav-links">
+        <a onclick="showPage('home')">Home</a>
+        <a onclick="showPage('browse')">Browse</a>
+        <a onclick="showPage('add')">Add Item</a>
+        <a onclick="showPage('requests')">Requests</a>
+        <a onclick="showPage('profile')">Profile</a>
+    </div>
 
-    <small>RENT LESS. REUSE MORE. SAVE MORE.</small>
+</nav>
 
-    <h1>
-        Rent what you need.<br>
-        Reuse what you have.
-    </h1>
+
+<!-- HOME PAGE -->
+<div id="home" class="page active">
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>Rent. Borrow. Reuse.</h1>
+
+        <p>
+            Find things you need from people around you,
+            or share items you no longer use.
+            Save money, reduce waste and build a trusted community.
+        </p>
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="homeSearch"
+                placeholder="What are you looking for?"
+            >
+
+            <button
+                class="btn primary"
+                onclick="searchFromHome()">
+                Search
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <div class="section-title">
+        <h2>Browse Categories</h2>
+        <p>Find what you need quickly</p>
+    </div>
+
+    <div class="categories">
+
+        <div class="category" onclick="filterCategory('Electronics')">
+            <div class="category-icon">📱</div>
+            Electronics
+        </div>
+
+        <div class="category" onclick="filterCategory('Books')">
+            <div class="category-icon">📚</div>
+            Books
+        </div>
+
+        <div class="category" onclick="filterCategory('Furniture')">
+            <div class="category-icon">🪑</div>
+            Furniture
+        </div>
+
+        <div class="category" onclick="filterCategory('Clothes')">
+            <div class="category-icon">👕</div>
+            Clothes
+        </div>
+
+        <div class="category" onclick="filterCategory('Tools')">
+            <div class="category-icon">🔧</div>
+            Tools
+        </div>
+
+        <div class="category" onclick="filterCategory('Sports')">
+            <div class="category-icon">⚽</div>
+            Sports
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <div class="section-title">
+        <h2>Popular Items</h2>
+        <p>Items available from our community</p>
+    </div>
+
+    <div id="homeItems" class="items"></div>
+
+</section>
+
+</div>
+
+
+<!-- BROWSE PAGE -->
+<div id="browse" class="page">
+
+<div class="browse-header">
+
+    <h1>Browse Available Items</h1>
 
     <p>
-        Find cameras, tools, books, electronics and more from people
-        nearby. Use them when you need them without buying new.
+        Find items that people are renting or sharing.
     </p>
 
-    <div class="search-box">
-        <input type="text" id="searchInput"
-               placeholder="What are you looking for?">
-        <button onclick="searchItems()">Search</button>
+</div>
+
+<div class="filter-box">
+
+    <input
+        type="text"
+        id="browseSearch"
+        placeholder="Search items..."
+        oninput="displayItems()"
+    >
+
+    <select id="categoryFilter" onchange="displayItems()">
+
+        <option value="All">All Categories</option>
+        <option>Electronics</option>
+        <option>Books</option>
+        <option>Furniture</option>
+        <option>Clothes</option>
+        <option>Tools</option>
+        <option>Sports</option>
+
+    </select>
+
+</div>
+
+<section class="section">
+
+    <div id="browseItems" class="items"></div>
+
+</section>
+
+</div>
+
+
+<!-- ADD ITEM PAGE -->
+<div id="add" class="page">
+
+<div class="form-container">
+
+    <h2>➕ Post an Unused Item</h2>
+
+    <p style="margin-bottom:25px;color:#666;">
+        Share something you no longer use with someone who needs it.
+    </p>
+
+    <div class="form-group">
+        <label>Item Name</label>
+        <input id="itemName" placeholder="Example: Study Table">
     </div>
 
-    <div class="buttons">
-        <button onclick="alert('Browse items coming soon!')">
-            Find an Item
-        </button>
+    <div class="form-group">
+        <label>Category</label>
 
-        <button onclick="alert('Listing feature coming soon!')">
-            List an Item
-        </button>
+        <select id="itemCategory">
+
+            <option>Electronics</option>
+            <option>Books</option>
+            <option>Furniture</option>
+            <option>Clothes</option>
+            <option>Tools</option>
+            <option>Sports</option>
+
+        </select>
+
+    </div>
+
+    <div class="form-group">
+        <label>Description</label>
+
+        <textarea
+            id="itemDescription"
+            placeholder="Describe your item...">
+        </textarea>
+
+    </div>
+
+    <div class="form-group">
+        <label>Condition</label>
+
+        <select id="itemCondition">
+
+            <option>Like New</option>
+            <option>Good</option>
+            <option>Used</option>
+
+        </select>
+
+    </div>
+
+    <div class="form-group">
+
+        <label>Rent Price (₹ per day)</label>
+
+        <input
+            type="number"
+            id="itemPrice"
+            placeholder="Enter 0 for free borrowing">
+
+    </div>
+
+    <div class="form-group">
+
+        <label>Location</label>
+
+        <input
+            id="itemLocation"
+            placeholder="Example: Kadapa">
+
+    </div>
+
+    <div class="form-group">
+
+        <label>Sharing Option</label>
+
+        <select id="sharingOption">
+
+            <option>Available for Rent</option>
+            <option>Available for Borrow</option>
+            <option>Rent or Borrow</option>
+
+        </select>
+
+    </div>
+
+    <button
+        class="btn primary"
+        style="width:100%;"
+        onclick="addItem()">
+
+        Post Item
+
+    </button>
+
+</div>
+
+</div>
+
+
+<!-- REQUESTS PAGE -->
+<div id="requests" class="page">
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>My Requests</h2>
+
+        <p>
+            Track your rental and borrowing requests.
+        </p>
+
+    </div>
+
+    <div id="requestsList">
+
+        <div class="request">
+
+            <div>
+
+                <h3>📚 Engineering Mathematics Book</h3>
+
+                <p>Requested for borrowing</p>
+
+            </div>
+
+            <span class="status">
+                Pending
+            </span>
+
+        </div>
+
     </div>
 
 </section>
 
-<section class="section" id="items">
+</div>
 
-    <h2>Featured Items</h2>
 
-    <div class="items">
+<!-- PROFILE PAGE -->
+<div id="profile" class="page">
 
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?auto=format&fit=crop&w=600&q=80">
+<div class="profile">
 
-            <div class="card-content">
-                <h3>Digital Camera</h3>
-                <p>Electronics • Nearby</p>
-                <div class="price">₹300/day</div>
-
-                <button onclick="viewDetails('Digital Camera')">
-                    View Details
-                </button>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=600&q=80">
-
-            <div class="card-content">
-                <h3>Books Bundle</h3>
-                <p>Books • Nearby</p>
-                <div class="price">₹50/day</div>
-
-                <button onclick="viewDetails('Books Bundle')">
-                    View Details
-                </button>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=600&q=80">
-
-            <div class="card-content">
-                <h3>Tool Kit</h3>
-                <p>Tools • Nearby</p>
-                <div class="price">₹100/day</div>
-
-                <button onclick="viewDetails('Tool Kit')">
-                    View Details
-                </button>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1504512485720-7d83a16ee930?auto=format&fit=crop&w=600&q=80">
-
-            <div class="card-content">
-                <h3>Camping Tent</h3>
-                <p>Outdoor • Nearby</p>
-                <div class="price">₹250/day</div>
-
-                <button onclick="viewDetails('Camping Tent')">
-                    View Details
-                </button>
-            </div>
-        </div>
-
+    <div class="profile-icon">
+        👤
     </div>
-</section>
 
-<section class="section about" id="about">
+    <h2>Community Member</h2>
 
-    <h2>About Rent & Reuse</h2>
+    <div class="rating">
+        ★★★★★
+    </div>
+
+    <p>Trusted Member</p>
+
+    <br>
 
     <p>
-        Rent & Reuse is a community platform that helps people rent
-        useful items from others instead of buying things they only
-        need temporarily. Save money, reduce waste and make better
-        use of things that are already available.
+        Building trust through responsible renting,
+        borrowing and sharing.
     </p>
 
-</section>
+    <br>
+
+    <button
+        class="btn primary"
+        onclick="alert('Profile verification feature can be connected later.')">
+
+        Verify Profile
+
+    </button>
+
+</div>
+
+</div>
+
+
+<!-- ITEM DETAILS MODAL -->
+<div id="itemModal" class="modal">
+
+<div class="modal-content">
+
+    <span
+        class="close"
+        onclick="closeModal()">
+        ×
+    </span>
+
+    <div id="modalContent"></div>
+
+</div>
+
+</div>
+
 
 <footer>
-    <p>© 2026 Rent & Reuse</p>
-    <p>Rent. Reuse. Save.</p>
+
+    <h3>Rent & Reuse</h3>
+
+    <p style="margin-top:10px;">
+        Share more. Waste less. Build trust.
+    </p>
+
 </footer>
+
 
 <script>
 
-function searchItems() {
+/* SAMPLE ITEMS */
 
-    let search = document.getElementById("searchInput").value;
+let items = [
 
-    if (search.trim() === "") {
-        alert("Please enter an item to search.");
-    } else {
-        alert("Searching for: " + search);
+{
+    id: 1,
+    name: "Laptop",
+    category: "Electronics",
+    description: "Good condition laptop suitable for study and basic work.",
+    condition: "Good",
+    price: 300,
+    location: "Kadapa",
+    option: "Rent or Borrow",
+    owner: "Rahul",
+    rating: 5,
+    icon: "💻"
+},
+
+{
+    id: 2,
+    name: "Engineering Books",
+    category: "Books",
+    description: "Engineering mathematics and physics books.",
+    condition: "Good",
+    price: 0,
+    location: "Kadapa",
+    option: "Available for Borrow",
+    owner: "Priya",
+    rating: 5,
+    icon: "📚"
+},
+
+{
+    id: 3,
+    name: "Study Table",
+    category: "Furniture",
+    description: "Wooden study table in good condition.",
+    condition: "Used",
+    price: 100,
+    location: "Kadapa",
+    option: "Available for Rent",
+    owner: "Arun",
+    rating: 4,
+    icon: "🪑"
+},
+
+{
+    id: 4,
+    name: "Football",
+    category: "Sports",
+    description: "Football available for temporary use.",
+    condition: "Good",
+    price: 50,
+    location: "Kadapa",
+    option: "Rent or Borrow",
+    owner: "Vijay",
+    rating: 5,
+    icon: "⚽"
+}
+
+];
+
+
+/* SHOW PAGE */
+
+function showPage(pageName) {
+
+    document.querySelectorAll(".page")
+        .forEach(page => page.classList.remove("active"));
+
+    document.getElementById(pageName)
+        .classList.add("active");
+
+    window.scrollTo(0,0);
+
+    if(pageName === "browse") {
+        displayItems();
     }
+
+    if(pageName === "home") {
+        displayHomeItems();
+    }
+}
+
+
+/* HOME ITEMS */
+
+function displayHomeItems() {
+
+    let container = document.getElementById("homeItems");
+
+    container.innerHTML = "";
+
+    items.slice(0,4).forEach(item => {
+
+        container.innerHTML += createCard(item);
+
+    });
 
 }
 
-function viewDetails(item) {
+
+/* BROWSE ITEMS */
+
+function displayItems() {
+
+    let container = document.getElementById("browseItems");
+
+    let search =
+        document.getElementById("browseSearch")
+        .value
+        .toLowerCase();
+
+    let category =
+        document.getElementById("categoryFilter")
+        .value;
+
+    let filtered = items.filter(item => {
+
+        let matchesSearch =
+            item.name.toLowerCase().includes(search);
+
+        let matchesCategory =
+            category === "All" ||
+            item.category === category;
+
+        return matchesSearch && matchesCategory;
+
+    });
+
+    container.innerHTML = "";
+
+    if(filtered.length === 0) {
+
+        container.innerHTML =
+        "<p>No items found.</p>";
+
+        return;
+
+    }
+
+    filtered.forEach(item => {
+
+        container.innerHTML += createCard(item);
+
+    });
+
+}
+
+
+/* CREATE CARD */
+
+function createCard(item) {
+
+    return `
+
+    <div class="card">
+
+        <div class="card-img">
+            ${item.icon}
+        </div>
+
+        <div class="card-body">
+
+            <h3>${item.name}</h3>
+
+            <p>${item.category}</p>
+
+            <p>📍 ${item.location}</p>
+
+            <p>Condition: ${item.condition}</p>
+
+            <p class="price">
+
+                ${
+                    item.price == 0
+                    ? "Free to Borrow"
+                    : "₹" + item.price + " / day"
+                }
+
+            </p>
+
+            <div class="card-buttons">
+
+                <button
+                    class="btn primary"
+                    onclick="viewItem(${item.id})">
+
+                    View Details
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    `;
+
+}
+
+
+/* VIEW ITEM */
+
+function viewItem(id) {
+
+    let item = items.find(i => i.id === id);
+
+    let stars = "★".repeat(item.rating);
+
+    document.getElementById("modalContent").innerHTML = `
+
+        <div style="text-align:center;font-size:80px;">
+            ${item.icon}
+        </div>
+
+        <h2>${item.name}</h2>
+
+        <p style="margin-top:10px;">
+            ${item.description}
+        </p>
+
+        <br>
+
+        <p><b>Category:</b> ${item.category}</p>
+
+        <p><b>Condition:</b> ${item.condition}</p>
+
+        <p><b>Location:</b> ${item.location}</p>
+
+        <p><b>Option:</b> ${item.option}</p>
+
+        <p class="price">
+
+            ${
+                item.price == 0
+                ? "Free to Borrow"
+                : "₹" + item.price + " / day"
+            }
+
+        </p>
+
+        <hr style="margin:20px 0;">
+
+        <h3>Owner</h3>
+
+        <p style="margin-top:8px;">
+            👤 ${item.owner}
+        </p>
+
+        <p>
+            <span style="color:#f39c12;">
+                ${stars}
+            </span>
+            Trusted user
+        </p>
+
+        <br>
+
+        <button
+            class="btn primary"
+            onclick="sendRequest(${item.id}, 'Rent')">
+
+            Request to Rent
+
+        </button>
+
+        <button
+            class="btn orange"
+            onclick="sendRequest(${item.id}, 'Borrow')">
+
+            Request to Borrow
+
+        </button>
+
+        <button
+            class="btn"
+            style="background:#eee;margin-top:10px;width:100%;"
+            onclick="contactOwner('${item.owner}')">
+
+            💬 Contact Owner
+
+        </button>
+
+    `;
+
+    document.getElementById("itemModal")
+        .classList.add("show");
+
+}
+
+
+/* CLOSE MODAL */
+
+function closeModal() {
+
+    document.getElementById("itemModal")
+        .classList.remove("show");
+
+}
+
+
+/* REQUEST */
+
+function sendRequest(id,type) {
+
+    let item = items.find(i => i.id === id);
+
+    let request = document.createElement("div");
+
+    request.className = "request";
+
+    request.innerHTML = `
+
+        <div>
+
+            <h3>
+                ${item.icon} ${item.name}
+            </h3>
+
+            <p>
+                Requested to ${type.toLowerCase()}
+            </p>
+
+        </div>
+
+        <span class="status">
+            Pending
+        </span>
+
+    `;
+
+    document.getElementById("requestsList")
+        .prepend(request);
+
+    closeModal();
 
     alert(
-        item +
-        "\\n\\nDetails:\\n" +
-        "Available for rent.\\n" +
-        "Contact the owner to request this item."
+        "Your request to " +
+        type.toLowerCase() +
+        " this item has been sent to " +
+        item.owner + "."
+    );
+
+    showPage("requests");
+
+}
+
+
+/* CONTACT OWNER */
+
+function contactOwner(owner) {
+
+    alert(
+        "Message feature opened.\n\n" +
+        "You can contact " +
+        owner +
+        " about the item."
     );
 
 }
+
+
+/* ADD ITEM */
+
+function addItem() {
+
+    let name =
+        document.getElementById("itemName").value;
+
+    let category =
+        document.getElementById("itemCategory").value;
+
+    let description =
+        document.getElementById("itemDescription").value;
+
+    let condition =
+        document.getElementById("itemCondition").value;
+
+    let price =
+        document.getElementById("itemPrice").value;
+
+    let location =
+        document.getElementById("itemLocation").value;
+
+    let option =
+        document.getElementById("sharingOption").value;
+
+
+    if(
+        name === "" ||
+        description === "" ||
+        location === ""
+    ) {
+
+        alert("Please fill all required details.");
+
+        return;
+
+    }
+
+
+    let icon = "📦";
+
+    if(category === "Electronics") icon = "📱";
+    if(category === "Books") icon = "📚";
+    if(category === "Furniture") icon = "🪑";
+    if(category === "Clothes") icon = "👕";
+    if(category === "Tools") icon = "🔧";
+    if(category === "Sports") icon = "⚽";
+
+
+    let newItem = {
+
+        id: Date.now(),
+
+        name: name,
+
+        category: category,
+
+        description: description,
+
+        condition: condition,
+
+        price: Number(price) || 0,
+
+        location: location,
+
+        option: option,
+
+        owner: "You",
+
+        rating: 5,
+
+        icon: icon
+
+    };
+
+
+    items.push(newItem);
+
+
+    alert(
+        "Your item has been successfully posted!"
+    );
+
+
+    document.getElementById("itemName").value = "";
+    document.getElementById("itemDescription").value = "";
+    document.getElementById("itemPrice").value = "";
+    document.getElementById("itemLocation").value = "";
+
+
+    showPage("browse");
+
+}
+
+
+/* SEARCH FROM HOME */
+
+function searchFromHome() {
+
+    let search =
+        document.getElementById("homeSearch").value;
+
+    document.getElementById("browseSearch").value =
+        search;
+
+    showPage("browse");
+
+    displayItems();
+
+}
+
+
+/* CATEGORY FILTER */
+
+function filterCategory(category) {
+
+    showPage("browse");
+
+    document.getElementById("categoryFilter")
+        .value = category;
+
+    displayItems();
+
+}
+
+
+/* INITIAL LOAD */
+
+displayHomeItems();
 
 </script>
 
