@@ -402,7 +402,12 @@ footer {
         <a onclick="showPage('browse')">Browse</a>
         <a onclick="showPage('add')">Add Item</a>
         <a onclick="showPage('requests')">Requests</a>
+        <a onclick="showPage('ownerRequestsPage'); loadOwnerRequests()">
+    Owner Requests
+</a>
         <a onclick="showPage('profile')">Profile</a>
+        <a onclick="showPage('login')">Login</a>
+
     </div>
 
 </nav>
@@ -622,6 +627,13 @@ footer {
             placeholder="Example: Kadapa">
 
     </div>
+    <div class="form-group">
+
+        <label>Item Image</label>
+
+        <input type="file" id="itemImage" accept="image/*">
+
+    </div>
 
     <div class="form-group">
 
@@ -690,6 +702,27 @@ footer {
 
 </div>
 
+<!-- OWNER REQUESTS PAGE -->
+
+<div id="ownerRequestsPage" class="page">
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>Requests for My Items</h2>
+
+            <p>
+                Approve or reject requests from users.
+            </p>
+
+        </div>
+
+        <div id="ownerRequests"></div>
+
+    </section>
+
+</div>
 
 <!-- PROFILE PAGE -->
 <div id="profile" class="page">
@@ -717,10 +750,7 @@ footer {
 
     <br>
 
-    <button
-        class="btn primary"
-        onclick="alert('Profile verification feature can be connected later.')">
-
+    <button class="btn primary"></button>
         Verify Profile
 
     </button>
@@ -729,7 +759,28 @@ footer {
 
 </div>
 
+<!-- LOGIN PAGE -->
+<div id="login" class="page">
 
+    <div class="login-container">
+        <h2>Welcome to Rent & Reuse</h2>
+        <p>Login to continue</p>
+
+        <input type="text" id="loginName" placeholder="Enter your name">
+
+        <input type="email" id="loginEmail" placeholder="Enter your email">
+
+        <input type="password" id="loginPassword" placeholder="Enter your password">
+
+        <button onclick="loginUser()">Login</button>
+
+        <p>
+            Don't have an account?
+            <a onclick="showSignup()">Sign Up</a>
+        </p>
+    </div>
+
+</div>
 <!-- ITEM DETAILS MODAL -->
 <div id="itemModal" class="modal">
 
@@ -822,8 +873,54 @@ let items = [
 }
 
 ];
+let savedItems = JSON.parse(localStorage.getItem("items"));
+
+if (savedItems) {
+    items = savedItems;
+}
+
+function loginUser() {
+
+    const name =
+        document.getElementById("loginName").value.trim();
+
+    const email =
+        document.getElementById("loginEmail").value.trim();
+
+    const password =
+        document.getElementById("loginPassword").value.trim();
 
 
+    if (
+        name === "" ||
+        email === "" ||
+        password === ""
+    ) {
+
+        alert(
+            "Please enter your name, email and password."
+        );
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        "userName",
+        name
+    );
+
+
+    localStorage.setItem(
+        "userEmail",
+        email
+    );
+
+
+    showPage("home");
+
+}
 /* SHOW PAGE */
 
 function showPage(pageName) {
@@ -919,8 +1016,12 @@ function createCard(item) {
 
     <div class="card">
 
-        <div class="card-img">
-            ${item.icon}
+       <div class="card-img">
+         ${
+             item.imageURL
+        ? `<img src="${item.imageURL}" alt="${item.name}" style="width:100%; height:200px; object-fit:cover;">`
+            : item.icon
+         }
         </div>
 
         <div class="card-body">
@@ -1065,191 +1166,313 @@ function closeModal() {
 
 
 /* REQUEST */
+async function sendRequest(id, type) {
 
-function sendRequest(id,type) {
-
-    let item = items.find(i => i.id === id);
-
-    let request = document.createElement("div");
-
-    request.className = "request";
-
-    request.innerHTML = `
-
-        <div>
-
-            <h3>
-                ${item.icon} ${item.name}
-            </h3>
-
-            <p>
-                Requested to ${type.toLowerCase()}
-            </p>
-
-        </div>
-
-        <span class="status">
-            Pending
-        </span>
-
-    `;
-
-    document.getElementById("requestsList")
-        .prepend(request);
-
-    closeModal();
-
-    alert(
-        "Your request to " +
-        type.toLowerCase() +
-        " this item has been sent to " +
-        item.owner + "."
-    );
-
-    showPage("requests");
-
-}
+    console.log("REQUEST BUTTON CLICKED");
+    console.log("Item ID:", id);
+    console.log("Type:", type);
 
 
-/* CONTACT OWNER */
+    const item = items.find(function(item) {
 
-function contactOwner(owner) {
+        return item.id == id;
 
-    alert(
-        "Message feature opened.\n\n" +
-        "You can contact " +
-        owner +
-        " about the item."
-    );
-
-}
+    });
 
 
-/* ADD ITEM */
+    if (!item) {
 
-function addItem() {
-
-    let name =
-        document.getElementById("itemName").value;
-
-    let category =
-        document.getElementById("itemCategory").value;
-
-    let description =
-        document.getElementById("itemDescription").value;
-
-    let condition =
-        document.getElementById("itemCondition").value;
-
-    let price =
-        document.getElementById("itemPrice").value;
-
-    let location =
-        document.getElementById("itemLocation").value;
-
-    let option =
-        document.getElementById("sharingOption").value;
-
-
-    if(
-        name === "" ||
-        description === "" ||
-        location === ""
-    ) {
-
-        alert("Please fill all required details.");
+        alert("Item not found.");
 
         return;
 
     }
 
 
-    let icon = "📦";
-
-    if(category === "Electronics") icon = "📱";
-    if(category === "Books") icon = "📚";
-    if(category === "Furniture") icon = "🪑";
-    if(category === "Clothes") icon = "👕";
-    if(category === "Tools") icon = "🔧";
-    if(category === "Sports") icon = "⚽";
+    const requester =
+        localStorage.getItem("userName") || "Guest User";
 
 
-    let newItem = {
-
-        id: Date.now(),
-
-        name: name,
-
-        category: category,
-
-        description: description,
-
-        condition: condition,
-
-        price: Number(price) || 0,
-
-        location: location,
-
-        option: option,
-
-        owner: "You",
-
-        rating: 5,
-
-        icon: icon
-
-    };
+    const requesterEmail =
+        localStorage.getItem("userEmail") ||
+        "guest@example.com";
 
 
-    items.push(newItem);
+    try {
+
+        const response = await fetch(
+            "http://127.0.0.1:5000/requests",
+            {
+
+                method: "POST",
+
+                headers: {
+
+                    "Content-Type": "application/json"
+
+                },
+
+                body: JSON.stringify({
+
+                    item_id: item.id,
+
+                    requester: requester,
+
+                    requester_email: requesterEmail,
+
+                    type: type
+
+                })
+
+            }
+        );
 
 
-    alert(
-        "Your item has been successfully posted!"
-    );
+        const data = await response.json();
 
 
-    document.getElementById("itemName").value = "";
-    document.getElementById("itemDescription").value = "";
-    document.getElementById("itemPrice").value = "";
-    document.getElementById("itemLocation").value = "";
+        console.log("BACKEND RESPONSE:", data);
 
 
-    showPage("browse");
+        if (!response.ok) {
+
+            alert(
+                data.error ||
+                "Request failed."
+            );
+
+            return;
+
+        }
+
+
+        closeModal();
+
+
+        alert(
+            "Request sent successfully!"
+        );
+
+
+        showPage("requests");
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "REQUEST ERROR:",
+            error
+        );
+
+
+        alert(
+            "Backend connection failed.\n\n" +
+            "Make sure server.py is running."
+        );
+
+    }
 
 }
 
+/* LOAD OWNER REQUESTS */
 
-/* SEARCH FROM HOME */
+async function loadOwnerRequests() {
 
-function searchFromHome() {
+    try {
 
-    let search =
-        document.getElementById("homeSearch").value;
+        let response =
+            await fetch(
+                "http://127.0.0.1:5000/owner-requests"
+            );
 
-    document.getElementById("browseSearch").value =
-        search;
+        let requests =
+            await response.json();
 
-    showPage("browse");
+        let container =
+            document.getElementById("ownerRequests");
 
-    displayItems();
+        container.innerHTML = "";
 
+        if (requests.length === 0) {
+
+            container.innerHTML =
+                "<p>No requests received.</p>";
+
+            return;
+        }
+
+        requests.forEach(req => {
+
+            let item =
+                items.find(i => i.id == req.item_id);
+
+            let itemName =
+                item ? item.name : "Unknown Item";
+
+            container.innerHTML += `
+
+                <div class="request">
+
+                    <div>
+
+                        <h3>${itemName}</h3>
+
+                        <p>
+                            👤 Requester:
+                            <b>${req.requester}</b>
+                        </p>
+
+                        <p>
+                            📧 ${req.requester_email}
+                        </p>
+
+                        <p>
+                            Request type:
+                            <b>${req.type}</b>
+                        </p>
+
+                        <p>
+                            Status:
+                            <b>${req.status}</b>
+                        </p>
+
+                    </div>
+
+                    <div>
+
+                        ${
+                            req.status === "Pending"
+
+                            ?
+
+                            `
+
+                            <button
+                                class="btn primary"
+                                onclick="approveRequest(${req.id})">
+
+                                ✓ Approve
+
+                            </button>
+
+                            <button
+                                class="btn"
+                                style="background:#e74c3c;color:white;"
+                                onclick="rejectRequest(${req.id})">
+
+                                ✕ Reject
+
+                            </button>
+
+                            `
+
+                            :
+
+                            `<span class="status">
+                                ${req.status}
+                            </span>`
+                        }
+
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+    } catch (error) {
+
+        showMessage(
+            "Cannot load owner requests.",
+            "error"
+        );
+    }
 }
 
+async function approveRequest(id) {
 
-/* CATEGORY FILTER */
+    try {
 
-function filterCategory(category) {
+        let response = await fetch(
+            "http://127.0.0.1:5000/requests/" +
+            id +
+            "/approve",
+            {
+                method: "PUT"
+            }
+        );
 
-    showPage("browse");
+        let data = await response.json();
 
-    document.getElementById("categoryFilter")
-        .value = category;
+        if (!response.ok) {
 
-    displayItems();
+            showMessage(
+                data.error || "Approval failed",
+                "error"
+            );
 
+            return;
+        }
+
+        showMessage(
+            "Request approved successfully!",
+            "success"
+        );
+
+        loadOwnerRequests();
+
+    } catch (error) {
+
+        showMessage(
+            "Cannot connect to backend.",
+            "error"
+        );
+    }
 }
 
+async function rejectRequest(id) {
+
+    try {
+
+        let response = await fetch(
+            "http://127.0.0.1:5000/requests/" +
+            id +
+            "/reject",
+            {
+                method: "PUT"
+            }
+        );
+
+        let data = await response.json();
+
+        if (!response.ok) {
+
+            showMessage(
+                data.error || "Rejection failed",
+                "error"
+            );
+
+            return;
+        }
+
+        showMessage(
+            "Request rejected.",
+            "success"
+        );
+
+        loadOwnerRequests();
+
+    } catch (error) {
+
+        showMessage(
+            "Cannot connect to backend.",
+            "error"
+        );
+    }
+}
 
 /* INITIAL LOAD */
 
